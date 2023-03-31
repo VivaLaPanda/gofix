@@ -1,0 +1,16 @@
+{"Time":"2023-03-31T13:48:23.582782-07:00","Action":"output","Package":"github.com/vivalapanda/gofix","Output":"testing: warning: no tests to run\n"}
+{"Time":"2023-03-31T13:48:23.582992-07:00","Action":"output","Package":"github.com/vivalapanda/gofix","Output":"PASS\n"}
+{"Time":"2023-03-31T13:48:23.582998-07:00","Action":"output","Package":"github.com/vivalapanda/gofix","Output":"ok  \tgithub.com/vivalapanda/gofix\t(cached) [no tests to run]\n"}
+{"Time":"2023-03-31T13:48:23.583005-07:00","Action":"pass","Package":"github.com/vivalapanda/gofix","Elapsed":0.001}
+{"Time":"2023-03-31T13:48:23.682119-07:00","Action":"run","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide"}
+{"Time":"2023-03-31T13:48:23.682147-07:00","Action":"output","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide","Output":"=== RUN   Test_divide\n"}
+{"Time":"2023-03-31T13:48:23.682161-07:00","Action":"run","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide/1_/_2_=_0"}
+{"Time":"2023-03-31T13:48:23.682164-07:00","Action":"output","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide/1_/_2_=_0","Output":"=== RUN   Test_divide/1_/_2_=_0\n"}
+{"Time":"2023-03-31T13:48:23.682169-07:00","Action":"output","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide/1_/_2_=_0","Output":"    example_test.go:55: divide() = -2, want 0\n"}
+{"Time":"2023-03-31T13:48:23.682177-07:00","Action":"output","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide","Output":"--- FAIL: Test_divide (0.00s)\n"}
+{"Time":"2023-03-31T13:48:23.682183-07:00","Action":"output","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide/1_/_2_=_0","Output":"    --- FAIL: Test_divide/1_/_2_=_0 (0.00s)\n"}
+{"Time":"2023-03-31T13:48:23.682186-07:00","Action":"fail","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide/1_/_2_=_0","Elapsed":0}
+{"Time":"2023-03-31T13:48:23.682191-07:00","Action":"fail","Package":"github.com/vivalapanda/gofix/example","Test":"Test_divide","Elapsed":0}
+{"Time":"2023-03-31T13:48:23.682194-07:00","Action":"output","Package":"github.com/vivalapanda/gofix/example","Output":"FAIL\n"}
+{"Time":"2023-03-31T13:48:23.682449-07:00","Action":"output","Package":"github.com/vivalapanda/gofix/example","Output":"FAIL\tgithub.com/vivalapanda/gofix/example\t0.166s\n"}
+{"Time":"2023-03-31T13:48:23.682475-07:00","Action":"fail","Package":"github.com/vivalapanda/gofix/example","Elapsed":0.167}
