@@ -29,7 +29,7 @@ func main() {
 	testOutput, err := GetTestOutput()
 
 	// Print for debugging
-	fmt.Println(testOutput)
+	// fmt.Println(testOutput)
 
 	// Get the files that contain failing tests
 	failingTests, err := GetFailingTests(testOutput)
@@ -87,20 +87,20 @@ func main() {
 			}
 
 			// Print out the state here to make sure it's working
-			fmt.Println("Test Code:")
-			for _, testCodeString := range testCodeStrings {
-				fmt.Println(testCodeString)
-			}
-			fmt.Println("Function Code:")
-			for _, funcCodeString := range funcCodeStrings {
-				fmt.Println(funcCodeString)
-			}
+			// fmt.Println("Test Code:")
+			//for _, testCodeString := range testCodeStrings {
+			//	fmt.Println(testCodeString)
+			//}
+			//// fmt.Println("Function Code:")
+			//for _, funcCodeString := range funcCodeStrings {
+			//	fmt.Println(funcCodeString)
+			//}
 
 			// Construct the prompt for GPT-4
 			prompt := ConstructPrompt(testCodeStrings, funcCodeStrings, failedTest)
 
 			// Print the prompt for debugging
-			fmt.Println(prompt)
+			// fmt.Println(prompt)
 
 			// Call GPT-4
 			resp, err := callGpt4(prompt)

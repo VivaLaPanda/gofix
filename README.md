@@ -1,4 +1,4 @@
-The following is a Go script called "gofix" used to automatically fix failing Golang tests by using GPT-4.
+gofix is a tool used to automatically fix failing Golang tests by using GPT-4.
 The user calls it by calling something like `go test ./... -run ^Test_divide$` and piping the results into gofix. Gofix then:
 - Figures out which files tests are failing in
 - Gets the code of the tests that are failing

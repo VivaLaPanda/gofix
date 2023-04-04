@@ -1,6 +1,9 @@
 package example
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // This file is an example of a chunk of logic which contains a few functions and a main that calls those functions
 // Some of those functions call other functions, some are leaf functions
@@ -22,9 +25,10 @@ func multiply(a int, b int) int {
 
 // divide uses subtract to divide two numbers by repeated subtraction
 func divide(a int, b int) int {
-	var result int
-	for i := 0; i < a; i++ {
-		result = subtract(result, b)
+	var result int = 0
+	for a >= b {
+		a = subtract(a, b)
+		result++
 	}
 	return result
 }
@@ -36,6 +40,30 @@ func multiplyString(a int, b string) string {
 		result += b
 	}
 	return result
+}
+
+func ConvertRomanToDecimal(roman string) (int, error) {
+	romanNumerals := map[string]int{"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+	// check for invalid Roman numeral
+	for i := 0; i < len(roman); i++ {
+		if _, ok := romanNumerals[string(roman[i])]; !ok {
+			return 0, errors.New("invalid Roman numeral")
+		}
+	}
+
+	total := 0
+	for i := 0; i < len(roman); i++ {
+		currentValue := romanNumerals[string(roman[i])]
+		if i+1 < len(roman) {
+			nextValue := romanNumerals[string(roman[i+1])]
+			if currentValue < nextValue {
+				currentValue = -currentValue
+			}
+		}
+		total += currentValue
+	}
+	return total, nil
 }
 
 func main() {

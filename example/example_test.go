@@ -1,6 +1,9 @@
 package example
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
 func Test_add(t *testing.T) {
 	type args struct {
@@ -137,6 +140,39 @@ func Test_subtract(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := subtract(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("subtract() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestConvertRomanToDecimal(t *testing.T) {
+	testCases := []struct {
+		roman    string
+		expected int
+		err      error
+	}{
+		{"III", 3, nil},
+		{"IV", 4, nil},
+		{"IX", 9, nil},
+		{"LVIII", 58, nil},
+		{"MCMXCIV", 1994, nil},
+		{"IIII", 0, errors.New("invalid Roman numeral")},
+		{"VV", 0, errors.New("invalid Roman numeral")},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.roman, func(t *testing.T) {
+			result, err := ConvertRomanToDecimal(tc.roman)
+			if err != nil && tc.err == nil {
+				t.Errorf("Unexpected error for Roman numeral %s: %v", tc.roman, err)
+			} else if err == nil && tc.err != nil {
+				t.Errorf("Expected error but got none for Roman numeral %s", tc.roman)
+			} else if err != nil && tc.err != nil && err.Error() != tc.err.Error() {
+				t.Errorf("Expected error %v but got %v for Roman numeral %s", tc.err, err, tc.roman)
+			}
+
+			if result != tc.expected {
+				t.Errorf("Expected %d but got %d for Roman numeral %s", tc.expected, result, tc.roman)
 			}
 		})
 	}
