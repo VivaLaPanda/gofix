@@ -15,18 +15,21 @@ import (
 	"strings"
 )
 
-func main() {
-	// Read in all of stdin as a string while accounting for output buffering
-	// Read the contents of test_output.txt
-	content, err := ioutil.ReadFile("test_output.jsonl")
+func GetTestOutput() (string, error) {
+	bytes, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
-		fmt.Println("Error reading test_output.jsonl:", err)
-		os.Exit(1)
+		return "", fmt.Errorf("failed to read from stdin: %v", err)
 	}
-	testOutput := string(content)
+
+	return string(bytes), nil
+}
+
+func main() {
+	// Get the output of the test command from stdin (go test ./... -json)
+	testOutput, err := GetTestOutput()
 
 	// Print for debugging
-	// fmt.Println(testOutput)
+	fmt.Println(testOutput)
 
 	// Get the files that contain failing tests
 	failingTests, err := GetFailingTests(testOutput)
@@ -113,7 +116,6 @@ func main() {
 }
 
 // ConstructPrompt takes in the test code, the function code, and failingTestInfo and constructs the prompt for GPT-4
-// ConstructPrompt takes in the test code, the function code, and failingTestInfo and constructs the prompt for GPT-4
 func ConstructPrompt(testCodes, funcCodes []string, failingTestInfo FailingTest) string {
 	// Join test code and funcCode to look like code blocks .i.e.
 	// ```go
@@ -141,3 +143,15 @@ func ConstructPrompt(testCodes, funcCodes []string, failingTestInfo FailingTest)
 
 	return prompt
 }
+
+//// RunGoTest runs "go test ./... -json and returns the output
+//func RunGoTest() (string, error) {
+//	// Run "go test ./... -json and get the output using the os/exec package
+//	cmd := exec.Command("go", "test", "./...", "-json")
+//	out, err := cmd.Output()
+//	if err != nil {
+//		return "", err
+//	}
+//
+//	return string(out), nil
+//}

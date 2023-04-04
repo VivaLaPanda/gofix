@@ -133,8 +133,7 @@ func GetFileFromPath(filePath string) (*ast.File, error) {
 
 	file, err := parser.ParseFile(fset, filePath, nil, parser.ParseComments)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return nil, fmt.Errorf("error parsing file: %v", err)
 	}
 
 	return file, nil
@@ -149,8 +148,6 @@ func GetTestCode(file *ast.File, failedTestFuncName string) []*ast.FuncDecl {
 			fd := decl.(*ast.FuncDecl)
 			if strings.HasPrefix(fd.Name.Name, "Test") && fd.Name.Name == failedTestFuncName {
 				testCode = append(testCode, fd)
-				fmt.Println("Function contents of", failedTestFuncName, ":")
-				fmt.Printf("%#v\n", fd.Body)
 			}
 		}
 	}
@@ -184,8 +181,6 @@ func GetFunctionCode(file *ast.File, funcNames []string) []*ast.FuncDecl {
 			for _, funcName := range funcNames {
 				if fd.Name.Name == funcName {
 					funcCode = append(funcCode, fd)
-					fmt.Println("Function contents of", funcName, ":")
-					fmt.Printf("%#v\n", fd.Body)
 				}
 			}
 		}
