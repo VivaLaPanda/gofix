@@ -30,7 +30,7 @@ func callGpt4(prompt string) (string, error) {
 
 	url := "https://api.openai.com/v1/completions"
 	requestData := Gpt4Request{
-		Model:       "gpt-dv-stripe",
+		Model:       "<insert model>",
 		Prompt:      prompt,
 		MaxTokens:   512,
 		Temperature: .7,
